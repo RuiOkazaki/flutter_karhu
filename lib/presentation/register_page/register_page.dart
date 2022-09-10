@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_karhu/presentation/register_page/register_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // RegisterPageState is Freezed?
-// final registerPageProvider =
-//     StateNotifierProvider<RegisterPageNotifier, RegisterPageState>((ref) {
-//   return RegisterPageNotifier(ref);
-// });
+final registerPageProvider =
+    StateNotifierProvider<RegisterPageNotifier, RegisterPageState>((ref) {
+  return RegisterPageNotifier(ref);
+});
 
 class RegisterPage extends ConsumerWidget {
   const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final registerPageNotifier = ref.read(registerPageProvider.notifier);
-    // final registerPageState = ref.watch(registerPageProvider);
+    final registerPageNotifier = ref.read(registerPageProvider.notifier);
+    final registerPageState = ref.watch(registerPageProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -27,7 +29,6 @@ class RegisterPage extends ConsumerWidget {
         actions: [
           InkWell(
             onTap: () async {
-              // await registerPageNotifier.save();
               Navigator.pop(context);
             },
             child: const Padding(
@@ -53,13 +54,12 @@ class RegisterPage extends ConsumerWidget {
               firstDay: DateTime.utc(2010, 10, 16),
               lastDay: DateTime.utc(2030, 3, 14),
               focusedDay: DateTime.now(),
-
-              onDaySelected: (selectedDay, focusedDay) async {
-                // await registerPageNotifier.selectDay(selectedDay);
+              selectedDayPredicate: (day) {
+                return isSameDay(registerPageState.selectedDay, day);
               },
-              // selectedDayPredicate: (day) {
-              // return isSameDay(registerPageState.selectedDay, day);
-              // },
+              onDaySelected: (selectedDay, focusedDay) {
+                registerPageNotifier.selectDay(selectedDay);
+              },
             ),
           ),
           Padding(
@@ -74,7 +74,7 @@ class RegisterPage extends ConsumerWidget {
                 ),
               ),
               onChanged: (value) {
-                //   registerPageNotifier.setTitle(value);
+                registerPageNotifier.setTitle(value);
               },
             ),
           ),
@@ -90,9 +90,9 @@ class RegisterPage extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              // onChanged: (value) {
-              //   registerPageNotifier.setContent(value);
-              // },
+              onChanged: (value) {
+                registerPageNotifier.setContent(value);
+              },
             ),
           ),
         ],

@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RegisterPageState {
+  DateTime? get dateTime => throw _privateConstructorUsedError;
   DateTime? get selectedDay => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
+  bool get posting => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterPageStateCopyWith<RegisterPageState> get copyWith =>
@@ -30,7 +32,12 @@ abstract class $RegisterPageStateCopyWith<$Res> {
   factory $RegisterPageStateCopyWith(
           RegisterPageState value, $Res Function(RegisterPageState) then) =
       _$RegisterPageStateCopyWithImpl<$Res>;
-  $Res call({DateTime? selectedDay, String? title, String? content});
+  $Res call(
+      {DateTime? dateTime,
+      DateTime? selectedDay,
+      String? title,
+      String? content,
+      bool posting});
 }
 
 /// @nodoc
@@ -44,11 +51,17 @@ class _$RegisterPageStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? dateTime = freezed,
     Object? selectedDay = freezed,
     Object? title = freezed,
     Object? content = freezed,
+    Object? posting = freezed,
   }) {
     return _then(_value.copyWith(
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       selectedDay: selectedDay == freezed
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
@@ -61,6 +74,10 @@ class _$RegisterPageStateCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      posting: posting == freezed
+          ? _value.posting
+          : posting // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -72,7 +89,12 @@ abstract class _$$_RegisterPageStateCopyWith<$Res>
           $Res Function(_$_RegisterPageState) then) =
       __$$_RegisterPageStateCopyWithImpl<$Res>;
   @override
-  $Res call({DateTime? selectedDay, String? title, String? content});
+  $Res call(
+      {DateTime? dateTime,
+      DateTime? selectedDay,
+      String? title,
+      String? content,
+      bool posting});
 }
 
 /// @nodoc
@@ -88,11 +110,17 @@ class __$$_RegisterPageStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? dateTime = freezed,
     Object? selectedDay = freezed,
     Object? title = freezed,
     Object? content = freezed,
+    Object? posting = freezed,
   }) {
     return _then(_$_RegisterPageState(
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       selectedDay: selectedDay == freezed
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
@@ -105,6 +133,10 @@ class __$$_RegisterPageStateCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String?,
+      posting: posting == freezed
+          ? _value.posting
+          : posting // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -112,18 +144,28 @@ class __$$_RegisterPageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RegisterPageState implements _RegisterPageState {
-  _$_RegisterPageState({this.selectedDay, this.title, this.content});
+  _$_RegisterPageState(
+      {this.dateTime,
+      this.selectedDay,
+      this.title,
+      this.content,
+      this.posting = false});
 
+  @override
+  final DateTime? dateTime;
   @override
   final DateTime? selectedDay;
   @override
   final String? title;
   @override
   final String? content;
+  @override
+  @JsonKey()
+  final bool posting;
 
   @override
   String toString() {
-    return 'RegisterPageState(selectedDay: $selectedDay, title: $title, content: $content)';
+    return 'RegisterPageState(dateTime: $dateTime, selectedDay: $selectedDay, title: $title, content: $content, posting: $posting)';
   }
 
   @override
@@ -131,18 +173,22 @@ class _$_RegisterPageState implements _RegisterPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RegisterPageState &&
+            const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
             const DeepCollectionEquality()
                 .equals(other.selectedDay, selectedDay) &&
             const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.content, content));
+            const DeepCollectionEquality().equals(other.content, content) &&
+            const DeepCollectionEquality().equals(other.posting, posting));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(dateTime),
       const DeepCollectionEquality().hash(selectedDay),
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(content));
+      const DeepCollectionEquality().hash(content),
+      const DeepCollectionEquality().hash(posting));
 
   @JsonKey(ignore: true)
   @override
@@ -153,16 +199,22 @@ class _$_RegisterPageState implements _RegisterPageState {
 
 abstract class _RegisterPageState implements RegisterPageState {
   factory _RegisterPageState(
-      {final DateTime? selectedDay,
+      {final DateTime? dateTime,
+      final DateTime? selectedDay,
       final String? title,
-      final String? content}) = _$_RegisterPageState;
+      final String? content,
+      final bool posting}) = _$_RegisterPageState;
 
+  @override
+  DateTime? get dateTime;
   @override
   DateTime? get selectedDay;
   @override
   String? get title;
   @override
   String? get content;
+  @override
+  bool get posting;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterPageStateCopyWith<_$_RegisterPageState> get copyWith =>

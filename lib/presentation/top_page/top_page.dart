@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_karhu/presentation/register_page/register_page.dart';
+import 'package:flutter_karhu/presentation/register_page/register_page_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_karhu/presentation/top_page/top_page_notifier.dart';
 
 final topPageProvider = StateNotifierProvider<TopPageNotifier, int>((ref) {
   return TopPageNotifier();
+});
+
+final registerPageProvider =
+    StateNotifierProvider<RegisterPageNotifier, RegisterPageState>((ref) {
+  return RegisterPageNotifier();
 });
 
 class TopPage extends ConsumerWidget {
