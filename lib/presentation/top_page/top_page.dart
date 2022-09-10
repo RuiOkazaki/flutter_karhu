@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_karhu/presentation/top_page/top_page_notifier.dart';
 
-class TopPage extends StatelessWidget {
+final topPageProvider = StateNotifierProvider<TopPageNotifier, int>((ref) {
+  return TopPageNotifier();
+});
+
+class TopPage extends ConsumerWidget {
   const TopPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final topPageState = ref.watch(topPageProvider); // getter
+    final topPageNotifier = ref.read(topPageProvider.notifier); // setter
+    // notifierはメソッドを呼び出すときに使用する
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('記録一覧'),
@@ -19,13 +29,13 @@ class TopPage extends StatelessWidget {
             // height: MediaQuery.of(context).size.height * 0.8,
             child: ListView.builder(
               // array.lengthなどで指定したい
-              itemCount: 10,
+              itemCount: topPageState,
               // ctx, itemCount → index
               itemBuilder: (BuildContext context, int index) {
                 return Center(
                   child: Card(
                     child: ListTile(
-                      title: Text('$index'),
+                      title: Text(index.toString()),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
@@ -45,7 +55,7 @@ class TopPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () {
-          print('pushed');
+          topPageNotifier.increment();
         },
         child: const Icon(Icons.add),
       ),

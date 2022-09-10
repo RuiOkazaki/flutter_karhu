@@ -6,5 +6,4 @@ class TopPageNotifier extends StateNotifier<int> {
   // ↑ 自作classはやめてFreezedを使用しないと変更時に大変
 
   void increment() => state++;
-  void decrement() => state--;
 }
