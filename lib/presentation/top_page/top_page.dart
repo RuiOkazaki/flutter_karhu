@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_karhu/presentation/register_page/RegisterPage.dart';
+import 'package:flutter_karhu/presentation/register_page/register_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_karhu/presentation/top_page/top_page_notifier.dart';
 
@@ -58,6 +58,7 @@ class TopPage extends ConsumerWidget {
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context, rootNavigator: true).push<void>(
+            // CupertinoPageRoute → android, iosどっちの遷移方法を採用するか
             CupertinoPageRoute(
               builder: (_) => const RegisterPage(),
             ),

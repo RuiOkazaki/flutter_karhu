@@ -52,17 +52,14 @@ class RegisterPage extends ConsumerWidget {
             child: TableCalendar(
               firstDay: DateTime.utc(2010, 10, 16),
               lastDay: DateTime.utc(2030, 3, 14),
-
-              /// このままだと別の月を選択すると、、、。
               focusedDay: DateTime.now(),
+
+              onDaySelected: (selectedDay, focusedDay) async {
+                // await registerPageNotifier.selectDay(selectedDay);
+              },
               // selectedDayPredicate: (day) {
               // return isSameDay(registerPageState.selectedDay, day);
               // },
-              onDaySelected: (selectedDay, focusedDay) async {
-                // await registerPageNotifier.selectDay(selectedDay);
-
-                ///追加課題
-              },
             ),
           ),
           Padding(
@@ -76,9 +73,9 @@ class RegisterPage extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              // onChanged: (value) {
-              //   registerPageNotifier.setTitle(value);
-              // },
+              onChanged: (value) {
+                //   registerPageNotifier.setTitle(value);
+              },
             ),
           ),
           Padding(
